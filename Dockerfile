@@ -1,4 +1,4 @@
-FROM nginx:1.17
+FROM nginx
 
 COPY web /usr/share/nginx/html
 
