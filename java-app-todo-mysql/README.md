@@ -19,3 +19,14 @@ Acceder a [http://localhost:8080/login](http://localhost:8080/login)
 Usuario: formadoresit
 
 Contraseña: dummy
+
+## Docker Compose
+
+Construir las imágenes
+
+`docker-compose build`
+
+Levantar todos los servicios
+
+`docker-compose up`
+
