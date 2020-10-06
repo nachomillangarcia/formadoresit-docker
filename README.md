@@ -1,6 +1,12 @@
 # Docker cheatsheet
 
+<img src="img/architecture.svg" alt="Architecture" width="800px">
+
+<img src="img/docker1.png" alt="docker vs VMs" width="800px">
+
 ## Links útiles Docker
+
+Raṕida introducción a los contenedores: [https://www.docker.com/resources/what-container](https://www.docker.com/resources/what-container)
 
 DockerHub: [https://hub.docker.com](https://hub.docker.com)
 
@@ -17,6 +23,9 @@ Para levantar en background: `-d`
 Ejemplo:
 
 `docker run -d -p 8080:80 nginx`
+
+<img src="img/Docker-port-binding.png" alt="port binding" width="500px">
+
 
 ## Construir imagen de Docker
 
