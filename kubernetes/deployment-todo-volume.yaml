@@ -35,6 +35,10 @@ spec:
                       path: /login
                       port: 8080
                   periodSeconds: 10
-              envFrom:
-              - configMapRef:
-                  name: todo-config
+              volumeMounts:
+              - name: todo-config
+                mountPath: /config
+            volumes:
+            - name: todo-config
+              configMap:
+                name: todo-config
