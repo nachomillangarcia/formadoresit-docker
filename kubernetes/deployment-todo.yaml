@@ -34,14 +34,11 @@ spec:
                   httpGet:
                       path: /login
                       port: 8080
-                  periodSeconds: 10            
-              env:
-              - name: DB_HOSTNAME
-                value: "mysql"
-              - name: DB_NAME
-                value: todo
-              - name: DB_USERNAME
-                value: todo
-              - name: DB_PASSWORD
-                value: pass
-
+                  periodSeconds: 10 
+              volumeMounts:
+              - name: todo-config
+                mountPath: /config
+            volumes:
+            - name: todo-config
+              configMap:
+                name: todo-config
