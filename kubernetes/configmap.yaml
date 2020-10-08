@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: todo-config
+data:
+  DB_HOSTNAME: mysql
+  DB_NAME: todo
+  DB_USERNAME: todo
+  DB_PASSWORD: pass
