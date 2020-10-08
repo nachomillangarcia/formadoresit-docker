@@ -25,12 +25,14 @@ spec:
                       cpu: 500m
                       memory: 0.5G
               livenessProbe:
-                  tcpSocket:
+                  httpGet:
+                      path: /login
                       port: 8080
                   initialDelaySeconds: 120
                   periodSeconds: 10              
               readinessProbe:
-                  tcpSocket:
+                  httpGet:
+                      path: /login
                       port: 8080
                   periodSeconds: 10            
               env:
