@@ -22,11 +22,11 @@ spec:
                       memory: 0.1G
                   limits:
                       cpu: 500m
-                      memory: 0.5G
+                      memory: 1G
               livenessProbe:
                   tcpSocket:
                       port: 3306
-                  initialDelaySeconds: 15
+                  initialDelaySeconds: 120
                   periodSeconds: 10              
               readinessProbe:
                   tcpSocket:

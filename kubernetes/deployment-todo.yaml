@@ -27,7 +27,7 @@ spec:
               livenessProbe:
                   tcpSocket:
                       port: 8080
-                  initialDelaySeconds: 15
+                  initialDelaySeconds: 120
                   periodSeconds: 10              
               readinessProbe:
                   tcpSocket:
@@ -35,7 +35,7 @@ spec:
                   periodSeconds: 10            
               env:
               - name: DB_HOSTNAME
-                value: mysql
+                value: "mysql"
               - name: DB_NAME
                 value: todo
               - name: DB_USERNAME
