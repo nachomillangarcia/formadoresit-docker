@@ -3,12 +3,12 @@ kind: Deployment
 metadata:
     name: nginx-deployment
 spec:
+    strategy:
+      type: Recreate  
     selector:
         matchLabels:
             app: nginx
     template:
-        strategy:
-          type: Recreate
         metadata:
             labels:
                 app: nginx
