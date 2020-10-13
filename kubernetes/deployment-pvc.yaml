@@ -20,7 +20,7 @@ spec:
               - containerPort: 80
 
               volumeMounts:
-                name: data
+              - name: data
                 mountPath: /root/my-data
             volumes:
             - name: data
