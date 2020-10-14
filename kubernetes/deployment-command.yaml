@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: ubuntu-deployment
+spec:
+    selector:
+        matchLabels:
+            app: ubuntu
+    template:
+        metadata:
+            labels:
+                app: ubuntu
+        spec:
+            containers:
+            - name: ubuntu
+              image: ubuntu
+              command:
+                - /bin/bash
+              args:
+                - "-c"
+                - "while true; do date; sleep 5; done"
