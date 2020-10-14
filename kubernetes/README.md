@@ -26,12 +26,23 @@ Kubernetes dispone de herramientas para levantar contenedores:
 - [Linux](https://microk8s.io/)
 
 
+## Listas de recursos para Kubernetes
+[Awesome Kubernetes](https://github.com/ramitsurana/awesome-kubernetes)
+[Kubedex](https://kubedex.com/)
+[DevOps Unlocked](https://devopsunlocked.com/kubernetes-curated-list-of-tools-and-resources/)
+
+
 # Comandos básicos
 Crear objetos a partir de archivos YAML: `kubectl create -f <ARCHIVO>`
 Listar objetos: `kubectl get <OBJETO>`. Por ejemplo: `kubectl get pod`
 Ver detalles de un objeto en concreto: `kubectl get <OBJETO> <NOMBRE> -o yaml`. Por ejemplo: `kubectl get pod nginx -o yaml`
 Ver descripción y eventos de un objeto en concreto: `kubectl describe <OBJETO> <NOMBRE>`. Por ejemplo: `kubectl describe pod nginx`
 Eliminar un objeto en concreto: `kubectl delete <OBJETO> <NOMBRE>`
+
+## kubectl cheatsheets
+[https://kubernetes.io/docs/reference/kubectl/cheatsheet/](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+[https://dzone.com/articles/kubectl-commands-cheat-sheet](https://dzone.com/articles/kubectl-commands-cheat-sheet)
+Imprimible: [https://linuxacademy.com/site-content/uploads/2019/04/Kubernetes-Cheat-Sheet_07182019.pdf](https://linuxacademy.com/site-content/uploads/2019/04/Kubernetes-Cheat-Sheet_07182019.pdf)
 
 
 # Objetos de Kubernetes
@@ -83,3 +94,42 @@ El objeto CronJob crea jobs de forma periódica. Por ejemplo, todas las noches, 
 Crea un job con `kubectl apply -f cronjob.yaml`
 
 Lista todos los job con `kubectl get cronjob`
+
+## Service
+Service representa un balanceador de carga entre varios pods que comparten una misma etiqueta, normalmente entre las réplicas de un mismo deployment o statefulset
+
+Crea un service con `kubectl apply -f cronjob.yaml`
+
+Lista todos los service con `kubectl get service`
+
+## Ingress
+### Ingress Controller
+Un ingress controller sirve como punto de entrada a todo el tráfico HTTP del clúster. No viene incluido con Kubernetes, se puede desplegar fácilmente. El más básico y oficial es el [Nginx Ingress Controller](https://kubernetes.github.io/ingress-nginx/)
+
+### Ingress
+Ingress es un objeto que define unos parámetros HTTP que debe tener el tráfico de un servicio (Por ejemplo, un hostname concreto o un path concreto). Estos objetos configuran las rutas en el ingress controller.
+
+Lista todos los ingress con `kubectl get service`
+
+## ConfigMap
+Configmap contiene una o varias variables que más adelante se pueden montar en cualquier carga de trabajo.
+
+
+Crea un service con `kubectl apply -f configmap.yaml`
+
+Lista todos los service con `kubectl get configmap`
+
+Puedes crear un secret a partir de un archivo con `kubectl create configmap`
+
+
+## Secret
+Similar a configmap, pero los datos se almacenan codificados en base64
+
+Crea un service con `kubectl apply -f secret.yaml`
+
+Lista todos los service con `kubectl get secret`
+
+Puedes crear un secret a partir de un archivo con `kubectl create secret generic`
+
+# Documentación oficial
+Referencia de todos los objetos de Kubernetes: [https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/)
