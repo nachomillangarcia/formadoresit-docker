@@ -28,7 +28,9 @@ Kubernetes dispone de herramientas para levantar contenedores:
 
 ## Listas de recursos para Kubernetes
 [Awesome Kubernetes](https://github.com/ramitsurana/awesome-kubernetes)
+
 [Kubedex](https://kubedex.com/)
+
 [DevOps Unlocked](https://devopsunlocked.com/kubernetes-curated-list-of-tools-and-resources/)
 
 
@@ -41,7 +43,9 @@ Eliminar un objeto en concreto: `kubectl delete <OBJETO> <NOMBRE>`
 
 ## kubectl cheatsheets
 [https://kubernetes.io/docs/reference/kubectl/cheatsheet/](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+
 [https://dzone.com/articles/kubectl-commands-cheat-sheet](https://dzone.com/articles/kubectl-commands-cheat-sheet)
+
 Imprimible: [https://linuxacademy.com/site-content/uploads/2019/04/Kubernetes-Cheat-Sheet_07182019.pdf](https://linuxacademy.com/site-content/uploads/2019/04/Kubernetes-Cheat-Sheet_07182019.pdf)
 
 
