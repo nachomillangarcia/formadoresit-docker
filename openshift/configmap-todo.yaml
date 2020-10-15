@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: todo-config
+  labels:
+    application: todo
+data:
+  DB_HOSTNAME: mysql
+  DB_NAME: sampledb
+  DB_USERNAME: root
+  DB_PASSWORD: formadores

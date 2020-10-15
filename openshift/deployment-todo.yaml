@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: todo
+    labels:
+        application: todo
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            application: todo
+    template:
+        metadata:
+            labels:
+                application: todo
+        spec:
+            containers:
+            - name: todo
+              image: docker-registry.default.svc:5000/formadores/todo
+              ports:
+              - containerPort: 8080
+              resources:
+                  requests:
+                      cpu: 100m
+                      memory: 0.1G
+                  limits:
+                      cpu: 200m
+                      memory: 0.2G
+              livenessProbe:
+                  httpGet:
+                      path: /login
+                      port: 8080
+                  initialDelaySeconds: 120
+                  periodSeconds: 10              
+              readinessProbe:
+                  httpGet:
+                      path: /login
+                      port: 8080
+                  periodSeconds: 10
+              envFrom:
+              - configMapRef:
+                  name: todo-config
