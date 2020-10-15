@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo
+  labels:
+    application: todo
+spec:
+  type: ClusterIP
+  selector:
+    application: todo
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
