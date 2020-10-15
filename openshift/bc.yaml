@@ -1,0 +1,27 @@
+kind: "BuildConfig"
+apiVersion: "v1"
+metadata:
+  name: "hello" 
+spec:
+  runPolicy: "Serial" 
+  triggers: 
+    -
+      type: "GitHub"
+      github:
+        secret: "secret101"
+    - type: "Generic"
+      generic:
+        secret: "secret101"
+    -
+      type: "ImageChange"
+  source: 
+    git:
+      uri: "https://github.com/nachomillangarcia/formadoresit-docker.git"
+    contextDir: web-docker-sesion-1
+  strategy:
+    dockerStrategy:
+      dockerfilePath: .
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'hello:latest'
