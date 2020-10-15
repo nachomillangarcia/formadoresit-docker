@@ -1,6 +1,15 @@
+apiVersion: v1
+kind: ImageStream
+metadata:
+  labels:
+    application: hello
+  name: hello
+---
 kind: "BuildConfig"
 apiVersion: "v1"
 metadata:
+  labels:
+    application: hello
   name: "hello" 
 spec:
   runPolicy: "Serial" 
@@ -24,4 +33,4 @@ spec:
   output:
     to:
       kind: ImageStreamTag
-      name: 'httpd-example:latest'
+      name: 'hello:latest'
