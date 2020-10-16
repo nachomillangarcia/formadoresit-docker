@@ -35,10 +35,14 @@ Kubernetes dispone de herramientas para levantar contenedores:
 
 
 # Comandos básicos
-Crear objetos a partir de archivos YAML: `kubectl create -f <ARCHIVO>`
+Crear (y actualizar) objetos a partir de archivos YAML: `kubectl apply -f <ARCHIVO>`
+
 Listar objetos: `kubectl get <OBJETO>`. Por ejemplo: `kubectl get pod`
+
 Ver detalles de un objeto en concreto: `kubectl get <OBJETO> <NOMBRE> -o yaml`. Por ejemplo: `kubectl get pod nginx -o yaml`
+
 Ver descripción y eventos de un objeto en concreto: `kubectl describe <OBJETO> <NOMBRE>`. Por ejemplo: `kubectl describe pod nginx`
+
 Eliminar un objeto en concreto: `kubectl delete <OBJETO> <NOMBRE>`
 
 ## kubectl cheatsheets
@@ -123,7 +127,7 @@ Crea un service con `kubectl apply -f configmap.yaml`
 
 Lista todos los service con `kubectl get configmap`
 
-Puedes crear un secret a partir de un archivo con `kubectl create configmap`
+Puedes crear un configMap a partir de un archivo o carpeta con `kubectl create configmap`
 
 
 ## Secret
@@ -133,7 +137,68 @@ Crea un service con `kubectl apply -f secret.yaml`
 
 Lista todos los service con `kubectl get secret`
 
-Puedes crear un secret a partir de un archivo con `kubectl create secret generic`
+Puedes crear un secret a partir de un archivo o carpeta con `kubectl create secret generic`
+
+También puedes crear un secret especial con las credenciales para acceder a registries privados:
+
+`kubectl create secret docker-registry`
+
+## PersistentVolume
+Un persistentVolume representa un disco persistente de cualquier tipo que está disponible para ser utilizado en Kubernetes.
+
+Lo habitual no es crear estos persistentVolume de forma manual sino que una storageClass los cree automáticamente cuando detecta un nuevo persistentVolumeClaim
+
+Crea un persistentVolume con `kubectl apply -f persistentvolume.yaml`
+
+Lista todos los persistentVolume con `kubectl get pv`
+
+Documentación sobre todos los sistemas compatibles: [https://kubernetes.io/docs/concepts/storage/persistent-volumes/#types-of-persistent-volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#types-of-persistent-volumes)
+
+## PersistentVolumeClaim
+Un persistentVolumeClaim representa una petición de disco persistente, con ciertos requisitos de tamaño y modos de acceso. Éstos son asociados con pod para habilitar persistencia de datos a sus contenedores. Kubernetes asociará un persistentVolumeClaim con un persistentVolume que cumpla sus requisitos.
+
+Crea un persistentVolumeClaim con `kubectl apply -f persistentvolumeclaim.yaml`
+
+Lista todos los persistentVolumeClaim con `kubectl get pvc`
+
+## storageClass
+Las storageClass se utilizan en conjunto con algún sistema que permita crear discos automáticamente. Su función es servir de enlace entre dicho sistema de discos (NFIS, iSCSI, AWS EBS, ...), para crear persistentVolumes que satisfagan los requisitos de todos los PersistentVolumeClaim. De esta forma, siempre que se requiera un disco, será creado automáticamente.
+
+Crea una storageClass con `kubectl apply -f storageclass.yaml`
+
+Lista todos los storageClass con `kubectl get sc`
+
+Documentación sobre todos los sistemas compatibles: [https://kubernetes.io/docs/concepts/storage/storage-classes/#provisioner](https://kubernetes.io/docs/concepts/storage/storage-classes/#provisioner)
+
+# Ejemplo weblogic (imágenes de Docker privadas)
+
+Primero crea un secret con tus creadenciales para DockerHub:
+
+`kubectl create secret docker-registry regcred --docker-server=https://index.docker.io/v1/ --docker-username= --docker-password=`
+
+Para que Kubernetes pueda acceder a esa imagen, lo único que hay que añadir es el campo `imagePullSecrets` en el deployment, tal como está en el archivo `deployment-weblogic`
+
+# Kubernetes dashboard
+
+He incluido el archivo `dashboard.yaml` para desplegar automáticamente el dashboard de Kubernetes con las opciones de autenticación y seguridad deshabilitadas.
 
 # Documentación oficial
 Referencia de todos los objetos de Kubernetes: [https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/)
+
+Arquitectura de Kubernetes: [https://kubernetes.io/docs/concepts/architecture/](https://kubernetes.io/docs/concepts/architecture/)
+
+Todo sobre los pods: [https://kubernetes.io/docs/concepts/workloads/pods/](https://kubernetes.io/docs/concepts/workloads/pods/)
+
+Referencia de todos los tipos de seguridad [https://kubernetes.io/docs/concepts/security/overview/](https://kubernetes.io/docs/concepts/security/overview/)
+
+Autenticación en Kubernetes [https://kubernetes.io/docs/reference/access-authn-authz/authentication/](https://kubernetes.io/docs/reference/access-authn-authz/authentication/)
+
+# Proyectos extra (day-2 operations)
+
+[Helm](https://helm.sh/): Gestor de paquetes para Kubernetes
+
+[Prometheus](https://prometheus.io/) + [Grafana](https://grafana.com/): Solución de monitorización y alertas nativo
+
+[FluentBit](https://fluentbit.io/): Solución de logging
+
+[Istio](https://istio.io/): Service Mesh para Kubernetes y máquinas virtuales
